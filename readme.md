@@ -2,8 +2,15 @@
 
 ### Installation
 
+## Npm
 ```sh
 $ npm i better-lcu-connector
+```
+
+## Git
+
+```git
+git clone https://github.com/botkalista/better-lcu-connector.git
 ```
 
 ### Usage
