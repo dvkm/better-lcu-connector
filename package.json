@@ -1,0 +1,16 @@
+{
+  "name": "better-lcu-connector",
+  "version": "1.0.2",
+  "description": "Get and send data to lol LCU, BETTER.",
+  "main": "LcuConnector.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "botkalista",
+  "license": "ISC",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "node-fetch": "^2.6.0",
+    "ws": "^7.2.0"
+  }
+}
