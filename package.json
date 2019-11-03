@@ -1,6 +1,6 @@
 {
   "name": "better-lcu-connector",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Get and send data to lol LCU, BETTER.",
   "main": "LcuConnector.js",
   "scripts": {
