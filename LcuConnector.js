@@ -53,8 +53,7 @@ class LcuConnector {
             const ws = new WebSocket(`wss://riot:${connection.token}@127.0.0.1:${connection.port}`, 'wamp')
             ws.on('message', function incoming(msg) {
                 if (msg.endsWith('RiotRemoting"]')) return
-                let payload = JSON.parse(msg)
-                let [, , data] = payload
+                const [, , data] = JSON.parse(msg)
                 handlers.forEach(h => {
                     if ((data.uri.startsWith(h.uri) || h.uri === '*') && (data.eventType === h.type || h.type === '*')) {
                         h.action(data.uri, data.eventType, data.data)

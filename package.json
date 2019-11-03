@@ -3,11 +3,8 @@
   "version": "1.0.5",
   "description": "Get and send data to lol LCU, BETTER.",
   "main": "LcuConnector.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "botkalista",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "child_process": "^1.0.2",
     "node-fetch": "^2.6.0",
