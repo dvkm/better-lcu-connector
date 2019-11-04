@@ -55,7 +55,7 @@ connector.listen();
 
 ## Events
 
-[**onPlayerStatusChange**](###onPlayerStatusChange)
+[**onPlayerStatusChange**](#onPlayerStatusChange)
 
 ## Events documentation
 
