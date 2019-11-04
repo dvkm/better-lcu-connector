@@ -53,7 +53,12 @@ connector.events.onPlayerStatusChange = (data) => { //your code here }
 connector.listen();
 ```
 
+## Events
+
+[**onPlayerStatusChange**](###onPlayerStatusChange)
+
 ## Events documentation
+
 
 ### onPlayerStatusChange
 
