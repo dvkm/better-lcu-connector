@@ -56,7 +56,7 @@ connector.listen();
 
 ## Events
 
-[**onPlayerStatusChange**](#onPlayerStatusChange)
+[**onPlayerStatusChange**](#onPlayerStatusChange) - Fires when changes : icon, status message, online state, game state
 
 ## Events documentation
 
