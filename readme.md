@@ -107,4 +107,8 @@ connector.listen();
 - **statusMessage** { *string* } - Player status message
 - **summary** { *any* }
 - **summonerId** { *number* } - Summoner ID
+<<<<<<< HEAD
 - **time** { *any* }
+=======
+- **time** { *any* }
+>>>>>>> cd17af627d7f73ada6b16d999b06d7cc43257730
