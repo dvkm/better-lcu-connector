@@ -4,8 +4,8 @@ const child_process = require('child_process')
 const WebSocket = require('ws')
 const fetch = require('node-fetch')
 
-
 let _connection
+
 let handlers = []
 
 function getConnection() {
@@ -23,6 +23,14 @@ function getConnection() {
 
 class LcuConnector {
     constructor() {
+
+        let onPlayerStatusChange = () => { }
+        let onFriendStatusChange = () => { }
+        
+        this.events = { onPlayerStatusChange, onFriendStatusChange }
+
+        this.addHandler('/lol-chat/v1/me', '*', (uri, type, data) => { this.events.onPlayerStatusChange(data) })
+        this.addHandler('/lol-chat/v1/friends/', '*', (uri, type, data) => { this.events.onFriendStatusChange(data.name, data) })
     }
 
     makeRequest(method, endpoint, data) {
@@ -70,6 +78,7 @@ class LcuConnector {
         handlers.push(newHandler)
         return newHandler
     }
+
 }
 
 module.exports = LcuConnector
