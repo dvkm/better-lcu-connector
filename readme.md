@@ -1,3 +1,4 @@
+
 # better-lcu-connector
 
 ## Installation
@@ -86,4 +87,24 @@ connector.listen();
   - **gameStatus** { *inGame | outOfGame* }
   - **isObservable** { *NONE | LOBBYONLY | ALL* }
   - **level** { *number* } - Summoner's level
-  - **mapId** { number } - See [**MAPS**](docs/maps-constants.md)
+  - **mapId** { *number* } - See [**MAPS**](docs/maps-constants.md)
+  - **queueId** { *number* }
+  - **rankedLeagueDivision** { *I | II | III | IV* } - Player's rank  division
+  - **rankedLeagueQueue** { *RANKED_SOLO_5v5 | RANKED_FLEX_5v5* } - Current queue type if ranked or highest rank queue 
+  - **rankedLeagueTier** { *UNRANKED | IRON | BRONZE | SILVER | GOLD | PLATINIUM | DIAMOND | MASTER | GRANDMASTER | CHALLENGER* } Player's rank tier
+  - **rankedLosses** { *number*} - Always 0
+  - **rankedSplitRewardLevel** { *number* }
+  - **rankedWins** { *number* } - Number wins in ranked games
+  - **regalia** { *string* }
+  - **skinVariant** { *number* } - Current skin ID
+  - **skinname** { *string* } - Current playing champion name
+  - **timestamp** { *number* } - Game start time
+- **name** { *string* } - Summoner's name
+- **patchline** { *any* }
+- **pid** { *any* }
+- **product** { *string* } - Always "league_of_legends"
+- **productName** { *any* }
+- **statusMessage** { *string* } - Player status message
+- **summary** { *any* }
+- **summonerId** { *number* } - Summoner ID
+- **time** { *any* }
