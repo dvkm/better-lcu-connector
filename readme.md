@@ -57,10 +57,14 @@ connector.listen();
 
 ### onPlayerStatusChange
 
-**Event managed: `/lol-chat/v1-me`** 
+**Event managed: `/lol-chat/v1-me`**
+<br>
 **Methods managed: `CREATE` `UPDATE` `DELETE`**
+<br>
 **Returns: `{Object}`**
+<br>
 **Object properties:**
+<br>
 
  - **availability** { *dnd | online | offline | mobile* } - See [**AVAILABILITIES**](docs/availabilities.md)
 - **basic** { *string* }
