@@ -10,9 +10,11 @@ let handlers = []
 const IS_WIN = process.platform === 'win32';
 const IS_MAC = process.platform === 'darwin';
 
+// console.log = log.log;
+
 function getConnection() {
     if (_connection != undefined) return new Promise(resolve => resolve(_connection))
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
         const INSTALL_REGEX_WIN = /"--install-directory=(.*?)"/;
         const INSTALL_REGEX_MAC = /--install-directory=(.*?)( --|\n|$)/;
         const INSTALL_REGEX = IS_WIN ? INSTALL_REGEX_WIN : INSTALL_REGEX_MAC;
@@ -21,17 +23,24 @@ function getConnection() {
             `ps x -o args | grep 'LeagueClientUx'`;
 
         cp.exec(command, (err, stdout, stderr) => {
-            if (err || !stdout || stderr) {
-                resolve();
+            if (err) {
+                reject(err);
                 return;
             }
 
-
-            let token = stdout.match(/--remoting-auth-token=([^ "]*)/)[1]
-            let port = stdout.match(/--app-port=([^ "]*)/)[1]
-            console.log(token, port);
-            _connection = { token: token, port: port }
-            resolve(_connection)
+            if (!stdout) {
+                reject(new Error("Invalid stdout: " + stdout));
+                return;
+            }
+            try {
+                let token = stdout.match(/--remoting-auth-token=([^ "]*)/)[1]
+                let port = stdout.match(/--app-port=([^ "]*)/)[1]
+                _connection = { token: token, port: port }
+                resolve(_connection);
+            } catch (TypeError) {
+                reject(new Error("League is probably not on"));
+                return;
+            }
         })
     })
 }
@@ -86,7 +95,26 @@ class LcuConnector {
             })
 
             ws.on('open', () => { ws.send('[5,"OnJsonApiEvent"]') })
+            ws.on('close', () => { 
+                console.log("League closed. Restarting listener.");
+                _connection = undefined; // Resetting connection.
+                new Promise(r => setTimeout(r, 3000))
+                .then(() => {
+                    this.listen(); // Start all over again
+                });
+            })
+            ws.on('error', (err) => {
+                    console.log("Websocket error:", err);
+                    ws.close();
+            })
         })
+        .catch(err => {
+            console.log("Error:", err.message);
+            new Promise(r => setTimeout(r, 3000))
+            .then(() => {
+                this.listen();
+            });       
+        });
     }
 
     addHandler(uri, type, action) {
